@@ -1,0 +1,2 @@
+/home/benji/repos/auto_diary/android/app/.cxx/Debug/175d253z/x86/CMakeFiles/edit_cache.dir
+/home/benji/repos/auto_diary/android/app/.cxx/Debug/175d253z/x86/CMakeFiles/rebuild_cache.dir
