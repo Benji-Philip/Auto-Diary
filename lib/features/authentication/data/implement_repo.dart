@@ -7,8 +7,8 @@ class AuthRepoImplement implements AuthRepo {
   final SupaBaseDataSource supabaseDataSource;
 
   @override
-  Future<Session?> nativeGoogleSignIn() {
-    return supabaseDataSource.nativeGoogleSignIn();
+  Future<Session?> signInWithGoogle() {
+    return supabaseDataSource.signInWithGoogle();
   }
 
   @override

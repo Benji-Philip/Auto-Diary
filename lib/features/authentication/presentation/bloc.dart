@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthenticationState> {
-  final NativeSignInWithGoogleUseCase nativeSignInWithGoogle;
+  final SignInWithGoogleUseCase signInWithGoogle;
   final SignOutUseCase signOut;
   final SupabaseClient supabase;
 
-  AuthBloc(this.nativeSignInWithGoogle, this.signOut, this.supabase)
+  AuthBloc(this.signInWithGoogle, this.signOut, this.supabase)
     : super(AuthInitialState()) {
     supabase.auth.onAuthStateChange.listen((data) {
       final session = supabase.auth.currentSession;
@@ -29,11 +29,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthenticationState> {
       }
     });
 
-    on<NativeGoogleSignInEvent>((event, emit) async {
+    on<GoogleSignInEvent>((event, emit) async {
       HapticFeedback.heavyImpact();
       emit(AuthLoadingState());
       try {
-        final session = await nativeSignInWithGoogle();
+        final session = await signInWithGoogle();
         if (session != null) {
           emit(AuthenticatedState(session: session));
         } else {
@@ -41,6 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthenticationState> {
           emit(AuthErrorState("Failed to sign in"));
         }
       } catch (e) {
+      print(e.toString());
         emit(AuthErrorState(e.toString()));
       }
     });

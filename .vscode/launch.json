@@ -1,0 +1,10 @@
+{   
+ "version": "0.2.0",
+ "configurations": [{
+        "name": "Flutter",
+        "request": "launch",
+        "type": "dart",
+        "args": ["-d", "chrome","--web-port", "3000"],
+        // for some reason port 3000 is needed if i want the authentication to work on web
+    }
+]}

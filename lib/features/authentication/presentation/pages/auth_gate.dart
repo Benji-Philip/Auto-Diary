@@ -20,7 +20,7 @@ class AuthGate extends StatelessWidget {
       // provider
       create:
           (context) => AuthBloc(
-            NativeSignInWithGoogleUseCase(
+            SignInWithGoogleUseCase(
               AuthRepoImplement(SupaBaseDataSource(supabase: _supabase)),
             ),
             SignOutUseCase(
@@ -38,7 +38,7 @@ class AuthGate extends StatelessWidget {
               } else if (state is AuthenticatedState) {
                 return MyHomePage(session: state.session,);
               } else {
-                return const SignInPage();
+                return SignInPage(state: state);
               }
             },
           ),

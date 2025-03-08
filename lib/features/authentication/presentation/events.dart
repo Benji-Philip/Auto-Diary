@@ -4,7 +4,7 @@ abstract class AuthEvent {}
 
 class SignOutUserEvent extends AuthEvent {}
 
-class NativeGoogleSignInEvent extends AuthEvent {}
+class GoogleSignInEvent extends AuthEvent {}
 
 class AuthStateChangedEvent extends AuthEvent {
   final Session? session;
