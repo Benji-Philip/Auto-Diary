@@ -21,6 +21,7 @@ class SupaBaseDataSource {
   //google sign in
   Future<Session?> signInWithGoogle() async {
     if (kIsWeb) {
+      // only works for local port 3000
       await supabase.auth.signInWithOAuth(
         OAuthProvider.google,
         redirectTo:
