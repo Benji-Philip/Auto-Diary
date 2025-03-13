@@ -10,4 +10,28 @@ class HomeRepoImplement extends HomeRepo {
   Future<void> addEntry(User user) {
     return supabaseHomeDataSource.addEntry(user);
   }
+
+  @override
+  Future<void> editEntry() {
+    // TODO: implement editEntry
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> deleteEntry() {
+    // TODO: implement deleteEntry
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Map?> fetchEntry() {
+    // TODO: implement fetchEntry
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Map>> fetchAllEntries(User user) {
+    // TODO: implement fetchAllEntries
+    throw UnimplementedError();
+  }
 }

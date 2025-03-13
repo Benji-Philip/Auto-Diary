@@ -20,4 +20,28 @@ class SupabaseHomeDataSource {
       },
     ]);
   }
+
+  Future<void> editEntry() async {
+    await supabase
+        .from('diary_entries')
+        .update({
+          'title': 'Test Title',
+          'original_content': 'Test OG content',
+          'content': 'Test Content',
+          'updated_at': DateTime.now().toIso8601String(),
+        })
+        .eq('id', 'id');
+  }
+
+  Future<void> deleteEntry() async {
+    await supabase.from('diary_entries').delete().eq('id', 'id');
+  }
+
+  Future<Map?> fetchEntry() async {
+    return await supabase.from('diary_entries').select().eq('id', 'id').maybeSingle();
+  }
+
+  Future<List> fetchAllEntries(User user) async {
+    return await supabase.from('diary_entries').select().eq('user_id', user.id);
+  }
 }
