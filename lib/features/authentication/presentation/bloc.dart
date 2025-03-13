@@ -41,7 +41,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthenticationState> {
           emit(AuthErrorState("Failed to sign in"));
         }
       } catch (e) {
-      print(e.toString());
         emit(AuthErrorState(e.toString()));
       }
     });

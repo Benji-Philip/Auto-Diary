@@ -3,8 +3,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SupaBaseDataSource {
-  SupaBaseDataSource({required this.supabase});
+class SupabaseAuthDataSource {
+  SupabaseAuthDataSource({required this.supabase});
 
   final SupabaseClient supabase;
 
