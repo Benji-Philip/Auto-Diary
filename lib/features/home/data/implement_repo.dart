@@ -24,13 +24,13 @@ class HomeRepoImplement extends HomeRepo {
   }
 
   @override
-  Future<Map?> fetchEntry() {
+  Future<Map<String, dynamic>?> fetchEntry() {
     // TODO: implement fetchEntry
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Map>> fetchAllEntries(User user) {
+  Future<List<Map<String, dynamic>>> fetchAllEntries(User user) {
     // TODO: implement fetchAllEntries
     throw UnimplementedError();
   }

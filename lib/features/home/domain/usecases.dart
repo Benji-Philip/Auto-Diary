@@ -33,7 +33,7 @@ class FetchEntryUseCase {
   FetchEntryUseCase(this.homeRepo);
   final HomeRepo homeRepo;
   //fetch
-  Future<Map?> call() {
+  Future<Map<String, dynamic>?> call() {
     return homeRepo.fetchEntry();
   }
 }
@@ -42,7 +42,7 @@ class FetchAllEntriesUseCase {
   FetchAllEntriesUseCase(this.homeRepo);
   final HomeRepo homeRepo;
   //fetch all
-  Future<List<Map>> call(User user) {
+  Future<List<Map<String, dynamic>>>call(User user) {
     return homeRepo.fetchAllEntries(user);
   }
 }

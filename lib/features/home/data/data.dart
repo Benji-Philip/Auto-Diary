@@ -37,7 +37,7 @@ class SupabaseHomeDataSource {
     await supabase.from('diary_entries').delete().eq('id', 'id');
   }
 
-  Future<Map?> fetchEntry() async {
+  Future<Map<String, dynamic>?> fetchEntry() async {
     return await supabase.from('diary_entries').select().eq('id', 'id').maybeSingle();
   }
 

@@ -5,6 +5,6 @@ abstract class HomeRepo {
   Future<void> addEntry(User user);
   Future<void> editEntry();
   Future<void> deleteEntry();
-  Future<Map?> fetchEntry();
-  Future<List<Map>> fetchAllEntries(User user);
+  Future<Map<String, dynamic>?> fetchEntry();
+  Future<List<Map<String, dynamic>>> fetchAllEntries(User user);
 }

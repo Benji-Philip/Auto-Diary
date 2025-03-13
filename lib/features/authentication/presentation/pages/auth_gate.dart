@@ -20,37 +20,17 @@ class AuthGate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      // provider
-      providers: [
-        BlocProvider<AuthBloc>(
-          create:
-              (context) => AuthBloc(
-                SignInWithGoogleUseCase(
-                  AuthRepoImplement(
-                    SupabaseAuthDataSource(supabase: _supabase),
-                  ),
-                ),
-                SignOutUseCase(
-                  AuthRepoImplement(
-                    SupabaseAuthDataSource(supabase: _supabase),
-                  ),
-                ),
-                Supabase.instance.client,
-              ),
-        ),
-        BlocProvider(
-          create:
-              (context) => HomeBloc(
-                AddEntryUseCase(
-                  HomeRepoImplement(
-                    SupabaseHomeDataSource(supabase: _supabase),
-                  ),
-                ),
-                Supabase.instance.client,
-              ),
-        ),
-      ],
+    return BlocProvider<AuthBloc>(
+      create:
+          (context) => AuthBloc(
+            SignInWithGoogleUseCase(
+              AuthRepoImplement(SupabaseAuthDataSource(supabase: _supabase)),
+            ),
+            SignOutUseCase(
+              AuthRepoImplement(SupabaseAuthDataSource(supabase: _supabase)),
+            ),
+            Supabase.instance.client,
+          ),
       // UI
       child: Scaffold(
         body: SafeArea(
@@ -59,7 +39,39 @@ class AuthGate extends StatelessWidget {
               if (state is AuthLoadingState) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is AuthenticatedState) {
-                return MyHomePage(session: state.session);
+                return BlocProvider(
+                  create:
+                      (context) => HomeBloc(
+                        AddEntryUseCase(
+                          HomeRepoImplement(
+                            SupabaseHomeDataSource(supabase: _supabase),
+                          ),
+                        ),
+                        EditEntryUseCase(
+                          HomeRepoImplement(
+                            SupabaseHomeDataSource(supabase: _supabase),
+                          ),
+                        ),
+                        DeleteEntryUseCase(
+                          HomeRepoImplement(
+                            SupabaseHomeDataSource(supabase: _supabase),
+                          ),
+                        ),
+                        FetchEntryUseCase(
+                          HomeRepoImplement(
+                            SupabaseHomeDataSource(supabase: _supabase),
+                          ),
+                        ),
+                        FetchAllEntriesUseCase(
+                          HomeRepoImplement(
+                            SupabaseHomeDataSource(supabase: _supabase),
+                          ),
+                        ),
+                        state.session,
+                        Supabase.instance.client,
+                      ),
+                  child: MyHomePage(session: state.session),
+                );
               } else {
                 return SignInPage(state: state);
               }
